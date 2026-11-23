@@ -1,0 +1,43 @@
+[package]
+name = "gpui-de"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+description = "A practical toolkit for building native desktop applications with GPUI."
+repository = "https://github.com/mozyk96/gpui-de"
+homepage = "https://github.com/mozyk96/gpui-de"
+documentation = "https://docs.rs/gpui-de"
+readme = "README.md"
+license = "Apache-2.0"
+keywords = ["gpui", "gui", "desktop", "ide", "ui"]
+categories = ["gui", "development-tools"]
+include = [
+    "/src/**/*.rs",
+    "/examples/**/*.rs",
+    "/Cargo.toml",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE-APACHE",
+    "/NOTICE",
+]
+
+[features]
+default = ["component", "assets"]
+component = ["gpui-kit/component"]
+assets = ["gpui-kit/assets"]
+tree-sitter = ["component", "gpui-kit/tree-sitter-languages"]
+test-support = ["gpui-kit/test-support"]
+
+[dependencies]
+gpui-kit = { version = "0.3.0", package = "gpui_ce_kit", default-features = false }
+
+[[example]]
+name = "minimal"
+required-features = ["component", "assets"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[lints.rust]
+unsafe_code = "deny"
